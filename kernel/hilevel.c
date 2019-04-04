@@ -44,9 +44,9 @@ void schedule( ctx_t* ctx ) {
     if (pcb[i].age >= pcb[next_program].age && pcb[i].status != STATUS_TERMINATED) next_program = i;
   }
 
-  if ( current->status != STATUS_TERMINATED ) { // Ensures terminated programs are never reset to ready
-    current->status = STATUS_READY; // Sets the status to the previously ran program to READY
-  }
+  // Ensures terminated programs are never reset to ready
+  if ( current->status != STATUS_TERMINATED )  current->status = STATUS_READY; // Sets the status to the previously ran program to READY
+
 
   pcb[ next_program ].status = STATUS_EXECUTING; // Updates status of new program to run
 
