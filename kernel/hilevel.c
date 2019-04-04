@@ -7,7 +7,7 @@
 
 #include "hilevel.h"
 #define SIZE_OF_STACK 0x00001000
-#define maximum_number_of_PCBs 16
+#define maximum_number_of_PCBs 64
 
 int number_of_programs = 1;
 pcb_t pcb[ maximum_number_of_PCBs ]; pcb_t* current = NULL;
@@ -158,7 +158,7 @@ void hilevel_handler_svc( ctx_t* ctx, uint32_t id ) {
       pcb[ number_of_programs ].priority = current->priority;
       pcb[ number_of_programs ].age      = current->age;
       pcb[ number_of_programs ].ctx.pc   = ctx->pc; // Sets program counter to ensure program returns to the correct spot
-      pcb[ number_of_programs ].tos      = ( uint32_t )(&tos_programs - (number_of_programs * SIZE_OF_STACK)); // Sets the top of stack for the new program according to stack size
+      pcb[ number_of_programs ].tos      = ( uint32_t )(&tos_programs) - (number_of_programs * SIZE_OF_STACK); // Sets the top of stack for the new program according to stack size
 
       uint32_t offset = current->tos - ctx->sp; // Calculates offset based on where the current stack pointer is
       pcb[ number_of_programs ].ctx.sp   = pcb[ number_of_programs ].tos - offset; // Assigns stack pointer

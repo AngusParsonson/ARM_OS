@@ -23,6 +23,6 @@ SECTIONS {
   .       = . + 0x00001000;
   tos_svc = .;
   /* allocate stack for all programs */
-  .       = . + 0x00100000;
+  .       = . + 0x00040000;
   tos_programs  = .;
 }
