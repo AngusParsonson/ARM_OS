@@ -182,7 +182,7 @@ void hilevel_handler_svc( ctx_t* ctx, uint32_t id ) {
     case 0x05: { // 0x05 => exec( x )
       ctx->pc   = ( uint32_t )( ctx->gpr[ 0 ] ); // Sets program counter to the correct place in memory for that program i.e. P3 or P4 etc.
       ctx->sp   = current->tos; // Sets the stack pointer to the top of the stack
-
+      
       break;
     }
 
